@@ -1,35 +1,25 @@
-#include <stdio.h>
-#include <math.h>
+#include "complejo.h"
 
-struct complejo
-{
-	double parteReal;
-	double parteCompleja;
-};
-
-void printBinomial(struct complejo z);
-void printPolar(struct complejo z);
-double getModulo(struct complejo z);
-double getArgumento(struct complejo z);
-int getCuandrante(struct complejo z);
-double corregirArgumento(double argumento);
-
-int main(void)
-{
-	struct complejo z = {2.0,-2.0};
-	printBinomial(z);
-	printPolar(z);
-	return 0;
-}
 void printBinomial(struct complejo z)
 {
-	printf ("El complejo en forma binomial es: z = %.0lf + %.0lfi", z.parteReal, z.parteCompleja);
+	printf ("El complejo en forma binomial es: z = %.0lf + %.0lfi\n", z.parteReal, z.parteCompleja);
 }
 void printPolar(struct complejo z)
 {
-	double modulo = getModulo(z);
-	double argumento = getArgumento(z)/3.1416;
-	printf ("El complejo en forma polar es: z = %.2lf (cos %.2lfpi + sen %.2lfpi", modulo, argumento,argumento);
+	struct complejo w = getPolar(z);
+	printf ("El complejo en forma polar es: z = %.2lf (cos %.2lfpi + sen %.2lfpi)\n", w.modulo, w.argumento,w.argumento);
+}
+struct complejo getPolar(struct complejo z)
+{
+	z.modulo = getModulo(z);
+	z.argumento = getArgumento(z)/3.1416;
+	return z;
+}
+struct complejo getBinomial(struct complejo z)
+{
+	z.parteReal = cos(z.argumento) * z.modulo;
+	z.parteCompleja = sin(z.argumento) * z.modulo;
+	return z;
 }
 double getModulo(struct complejo z)
 {
@@ -59,4 +49,11 @@ double corregirArgumento(double argumento)
 		return 2 * 3.1416 + argumento;
 	}
 	return argumento;
+}
+struct complejo getComplemento(struct complejo z)
+{
+	struct complejo w;
+	w.parteReal = z.parteReal;
+	w.parteCompleja = 0 - z.parteCompleja;
+	return w;
 }
