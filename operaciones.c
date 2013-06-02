@@ -47,13 +47,17 @@ struct complejo radicacion(struct complejo z, int raiz)
 {
 	struct complejo w;
 	w.modulo = pow(z.modulo,1/raiz);
+	int i;
+	for (i=0;i<raiz;i++) {
+		w.argumento = moivre(z.argumento,i,raiz);
+		printf ("El complejo en forma polar es: z = %.2lf (cos %.2lfpi + sen %.2lfpi)\n", w.modulo, w.argumento,w.argumento);
 	//w.argumento = (z.argumento + 2kpi)/ potencia;
+	}
+
 	return w;
 }
-/*
-double moivre(double angulo,int raiz)
-{
 
-w.argumento = (angulo + 2kpi)/ potencia;
+double moivre(double angulo,int k, int n)
+{
+	return (angulo * 3.1416 + (2 * k * 3.1416))/n;
 }
-*/

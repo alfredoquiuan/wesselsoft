@@ -19,5 +19,9 @@ int main(void)
 	w.argumento = 3.1416 / 4;
 	printBinomial(getBinomial(w));
 	printBinomial(suma(z,w));
+	struct complejo x;
+	x.parteReal = 0;
+	x.parteCompleja = -8;
+	radicacion(getPolar(x),3);
 	return 0;
 }
