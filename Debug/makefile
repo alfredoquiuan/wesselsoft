@@ -23,19 +23,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: WesselSoft
+all: wesselsoft
 
 # Tool invocations
-WesselSoft: $(OBJS) $(USER_OBJS)
+wesselsoft: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C Linker'
-	gcc  -o "WesselSoft" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc  -o "wesselsoft" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) WesselSoft
+	-$(RM) $(OBJS)$(C_DEPS)$(EXECUTABLES) wesselsoft
 	-@echo ' '
 
 .PHONY: all clean dependents

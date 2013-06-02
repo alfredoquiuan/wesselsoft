@@ -15,11 +15,13 @@
 #include <string.h>
 #include "complejo.h"
 #include "list.h"
+#include "fasor.h"
 
 int testsFormaBinomica();
 int testsFormaPolar();
 int testsOperacionesBasicas();
 int testsOperacionesAvanzadas();
+int testFasores();
 void imprimirRaices(void *unComplejo);
 
 int main(void) {
@@ -31,6 +33,8 @@ int main(void) {
     testsOperacionesBasicas();
 
     testsOperacionesAvanzadas();
+
+    testFasores();
 
 	return EXIT_SUCCESS;
 }
@@ -269,6 +273,28 @@ int testsOperacionesAvanzadas() {
 
 	list_iterate(resultado, imprimirRaices);
 	list_destroy(resultado);
+
+	return EXIT_SUCCESS;
+}
+
+int testFasores()
+{
+	tFasor fasor1, fasor2, resultado;
+	fasor1.cFuncion = "cos";
+	fasor1.dAmplitud = 4;
+	fasor1.dFrecuencia = 3;
+	fasor1.dFase = 3.1416/4;
+	fasor2.cFuncion = "cos";
+	fasor2.dAmplitud = 6;
+	fasor2.dFrecuencia = 3;
+	fasor2.dFase = -3.1416/3;
+	resultado = sumaFasores(fasor1,fasor2);
+	assert(strcmp(resultado.cFuncion,"cos") == 0);
+	double dAmplitud= floor(resultado.dAmplitud * 100) / 100;
+	assert(dAmplitud == 6.29);
+	assert(resultado.dFrecuencia == 3.00);
+	double dFase = floor(resultado.dFase * 100) / 100;
+	assert(dFase == -0.39);
 
 	return EXIT_SUCCESS;
 }
