@@ -8,6 +8,7 @@
 #ifndef FASOR_H_
 #define FASOR_H_
 
+#include <stdlib.h>
 #include <string.h>
 #include "complejo.h"
 

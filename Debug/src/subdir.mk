@@ -4,22 +4,25 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../src/WesselSoft.c \
 ../src/fasor.c \
 ../src/funciones_complejos.c \
-../src/list.c 
+../src/list.c \
+../src/pantalla.c \
+../src/wesselsoft.c 
 
 OBJS += \
-./src/WesselSoft.o \
 ./src/fasor.o \
 ./src/funciones_complejos.o \
-./src/list.o 
+./src/list.o \
+./src/pantalla.o \
+./src/wesselsoft.o 
 
 C_DEPS += \
-./src/WesselSoft.d \
 ./src/fasor.d \
 ./src/funciones_complejos.d \
-./src/list.d 
+./src/list.d \
+./src/pantalla.d \
+./src/wesselsoft.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

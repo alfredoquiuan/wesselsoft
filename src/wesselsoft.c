@@ -16,6 +16,7 @@
 #include "complejo.h"
 #include "list.h"
 #include "fasor.h"
+#include "pantalla.h"
 
 int testsFormaBinomica();
 int testsFormaPolar();
@@ -25,17 +26,7 @@ int testFasores();
 void imprimirRaices(void *unComplejo);
 
 int main(void) {
-
-	testsFormaBinomica();
-
-    testsFormaPolar();
-
-    testsOperacionesBasicas();
-
-    testsOperacionesAvanzadas();
-
-    testFasores();
-
+	pantalla();
 	return EXIT_SUCCESS;
 }
 
