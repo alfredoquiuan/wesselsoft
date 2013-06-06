@@ -6,6 +6,7 @@
  */
 
 #include "pantalla.h"
+#include "string.h"
 
 void pantalla()
 {
@@ -25,7 +26,7 @@ void pantalla()
 				opcionMultiplicacion();
 				break;
 			case 4:
-				opcionDivicion();
+				opcionDivision();
 				break;
 		}
 	} while (opcion != 9);
@@ -37,19 +38,19 @@ void printMenu(){
 	printf("1-Suma de Complejos\n");
 	printf("2-Resta de Complejos\n");
 	printf("3-Multiplicacion de Complejos\n");
-	printf("4-Divicion de Complejos\n");
+	printf("4-Division de Complejos\n");
 	printf("5-Potencia de Complejos\n");
 	printf("6-Radicacion de Complejos\n");
 	printf("7-Suma de Fasores\n");
 	printf("8-Funcion de Transferencia\n");
-	printf("9-Salir\n");
+	printf("9-Salir\n\n");
 }
 
 void opcionSuma()
 {
 	//system("clear");
-	tComplejo z1 = capturaComlejo();
-	tComplejo z2 = capturaComlejo();
+	tComplejo z1 = capturaComplejo();
+	tComplejo z2 = capturaComplejo();
 	tComplejo *resultado = sumar(&z1,&z2);
 	printResultadoComplejo(resultado);
 }
@@ -57,8 +58,8 @@ void opcionSuma()
 void opcionResta()
 {
 	//system("clear");
-	tComplejo z1 = capturaComlejo();
-	tComplejo z2 = capturaComlejo();
+	tComplejo z1 = capturaComplejo();
+	tComplejo z2 = capturaComplejo();
 	tComplejo *resultado = restar(&z1,&z2);
 	printResultadoComplejo(resultado);
 }
@@ -66,28 +67,28 @@ void opcionResta()
 void opcionMultiplicacion()
 {
 	//system("clear");
-	tComplejo z1 = capturaComlejo();
-	tComplejo z2 = capturaComlejo();
+	tComplejo z1 = capturaComplejo();
+	tComplejo z2 = capturaComplejo();
 	tComplejo *resultado = multiplicar(&z1,&z2);
 	printResultadoComplejo(resultado);
 }
 
-void opcionDivicion()
+void opcionDivision()
 {
 	//system("clear");
-	tComplejo z1 = capturaComlejo();
-	tComplejo z2 = capturaComlejo();
+	tComplejo z1 = capturaComplejo();
+	tComplejo z2 = capturaComplejo();
 	tComplejo *resultado = dividir(&z1,&z2);
 	printResultadoComplejo(resultado);
 }
 
-tComplejo capturaComlejo()
+tComplejo capturaComplejo()
 {
 	tComplejo z;
 	int formaDeCaptura;
 	printf("Ingrese un numero complejo:\n");
 	printf("1-En forma binomica\n");
-	printf("2-En forma polar\n");
+	printf("2-En forma polar\n\n");
 	scanf("%d",&formaDeCaptura);
 	switch(formaDeCaptura)
 	{
@@ -104,35 +105,45 @@ tComplejo capturaComlejo()
 tComplejo capturaFormaBinomica()
 {
 	tComplejo z;
-	char *complejo;
+	char *complejo=NULL, *token=NULL;
+
 	printf("Ingrese un complejo de la forma (a,b): ");
+
+	if ((complejo=(char *)calloc(1, sizeof(char)+sizeof(int)+sizeof(char)+sizeof(int)+sizeof(char))) == NULL) {
+		perror("\nError al reservar memoria para el complejo binomico.");
+	}
+
 	scanf("%s",complejo);
-	/*
-	Hay que hacer que capture varios valores:
-	char* complejo;
-	printf("Ingrese un complejo de la forma (a,b): ");
-	scanf("%s",complejo);
-	printf("%s",complejo);
-	char valores[strlen(complejo)-1];
-	strncpy(valores,complejo+1,strlen(complejo)-2);
-	valores[strlen(complejo)-2] = '\0';
-	printf("%s",valores);
-	char *var1 = strtok(valores,",");
-	printf("%s",var1);
-	*/
-	z.stBinomica.dReal = atof(&complejo[1]);
-	z.stBinomica.dImaginaria = atof(&complejo[3]);
+
+	token=strtok(complejo, "(,)");
+	z.stBinomica.dReal=atof(token);
+	token=strtok(NULL, "(,)");
+	z.stBinomica.dImaginaria=atof(token);
+
+	free(complejo);
+
 	return z;
 }
 
 tComplejo capturaFormaPolar()
 {
 	tComplejo z;
-	char complejo[5];
+	char *complejo, *token;
 	printf("Ingrese un complejo de la forma [a;b]: ");
+
+	if ((complejo=(char *)calloc(1, sizeof(char)+sizeof(int)+sizeof(char)+sizeof(int)+sizeof(char))) == NULL) {
+		perror("\nError al reservar memoria para el complejo polar.");
+	}
+
 	scanf("%s",complejo);
-	z.stPolar.dModulo = atof(&complejo[1]);
-	z.stPolar.dArgumento = atof(&complejo[3]);
+
+	token=strtok(complejo, "[;]");
+	z.stPolar.dModulo=atof(token);
+	token=strtok(NULL, "[;]");
+	z.stPolar.dArgumento=atof(token);
+
+	free(complejo);
+
 	return z;
 }
 

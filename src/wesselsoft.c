@@ -1,10 +1,11 @@
 /*
  ============================================================================
- Name        : Wesselsoft_tests.c
+ Name        : wesselsoft.c
  Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban ...
+ Description : Programa principal del sistema Wesselsoft.
  Version     :
- Copyright   : Your copyright notice
- Description : Programa de prueba de la funciones desarrolladas en Wesselsoft.
  ============================================================================
  */
 
