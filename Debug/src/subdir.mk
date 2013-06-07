@@ -8,6 +8,7 @@ C_SRCS += \
 ../src/funciones_complejos.c \
 ../src/list.c \
 ../src/pantalla.c \
+../src/transferencia.c \
 ../src/wesselsoft.c 
 
 OBJS += \
@@ -15,6 +16,7 @@ OBJS += \
 ./src/funciones_complejos.o \
 ./src/list.o \
 ./src/pantalla.o \
+./src/transferencia.o \
 ./src/wesselsoft.o 
 
 C_DEPS += \
@@ -22,6 +24,7 @@ C_DEPS += \
 ./src/funciones_complejos.d \
 ./src/list.d \
 ./src/pantalla.d \
+./src/transferencia.d \
 ./src/wesselsoft.d 
 
 

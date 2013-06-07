@@ -18,11 +18,12 @@ void opcionSuma();
 void opcionResta();
 void opcionMultiplicacion();
 void opcionDivision();
+void opcionTransferencia();
 tComplejo capturaComplejo();
 tComplejo capturaFormaBinomica();
 tComplejo capturaFormaPolar();
 void printResultadoComplejo(tComplejo *z);
-void printResultadorPolar(tComplejo *z);
-void printResultadorBinomica(tComplejo *z);
+void printResultadoPolar(tComplejo *z);
+void printResultadoBinomica(tComplejo *z);
 
 #endif /* PANTALLA_H_ */

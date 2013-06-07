@@ -6,6 +6,7 @@
  */
 
 #include "pantalla.h"
+#include "transferencia.h"
 #include "string.h"
 
 void pantalla()
@@ -27,6 +28,9 @@ void pantalla()
 				break;
 			case 4:
 				opcionDivision();
+				break;
+			case 8:
+				opcionTransferencia();
 				break;
 		}
 	} while (opcion != 9);
@@ -80,6 +84,48 @@ void opcionDivision()
 	tComplejo z2 = capturaComplejo();
 	tComplejo *resultado = dividir(&z1,&z2);
 	printResultadoComplejo(resultado);
+}
+
+void opcionTransferencia()
+{
+	t_list *ceros, *polos;
+	tComplejo punto;
+	tComplejo complejoAux;
+	double k;
+	int i;
+
+	ceros = list_create();
+	polos = list_create();
+
+	printf("\n Si desea ingresar Ceros de la Función, ingrese '1', sino '0'");
+	scanf("%d",&i);
+
+	while (i==1)
+	{
+		complejoAux = capturaComplejo();
+		list_add(ceros, &complejoAux);
+		printf("\nSi desea ingresar otro Cero de la Función, ingrese '1', sino '0'");
+		scanf("%d",&i);
+	}
+
+	printf("\n Ingrese un Polo de la Función:");
+	do {
+		complejoAux = capturaComplejo();
+		list_add(polos,&complejoAux);
+		printf("Si desea ingresar otro Polo de la Función, ingrese '1', sino '0'");
+		scanf("%d",&i);
+	} while (i==1);
+
+	printf("\n Ingrese la Constante de la Función (Nro Real):");
+	scanf("%lf",&k);
+
+	printf("Ingrese el Punto en el que desea evaluar la Función:");
+	punto = capturaComplejo();
+
+	printf("\n El resultado de la función es:");
+	complejoAux = transferencia(ceros, polos, k, punto);
+
+	printResultadoComplejo(&complejoAux);
 }
 
 tComplejo capturaComplejo()
@@ -152,22 +198,22 @@ void printResultadoComplejo(tComplejo *z)
 	printf("El resultado es:\n");
 	if (esPolar(z))
 	{
-		printResultadorBinomica(pasarABinomica(z));
-		printResultadorPolar(z);
+		printResultadoBinomica(pasarABinomica(z));
+		printResultadoPolar(z);
 	} else {
-		printResultadorBinomica(z);
-		printResultadorPolar(pasarAPolar(z));
+		printResultadoBinomica(z);
+		printResultadoPolar(pasarAPolar(z));
 	}
 	//printf("Presione una tecla para continuar");
 	//system("pause");
 }
 
-void printResultadorPolar(tComplejo *z)
+void printResultadoPolar(tComplejo *z)
 {
 	printf("En forma polar: [%.2lf;%.2lf]\n",z->stPolar.dModulo,z->stPolar.dArgumento);
 }
 
-void printResultadorBinomica(tComplejo *z)
+void printResultadoBinomica(tComplejo *z)
 {
 	printf("En forma binomica: (%.2lf,%.2lf)\n",z->stBinomica.dReal,z->stBinomica.dImaginaria);
 }
