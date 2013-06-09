@@ -1,10 +1,13 @@
 /*
- * estruc_complejo.h
- *
- *  Created on: 28/04/2013
- *      Author: javier
+============================================================================
+ Name        : complejo.h
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Definiciones de las funciones con complejos.
+ Version     :
+ ============================================================================
  */
-
 #ifndef ESTRUC_COMPLEJO_H_
 #define ESTRUC_COMPLEJO_H_
 

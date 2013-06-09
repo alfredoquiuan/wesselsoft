@@ -1,10 +1,13 @@
 /*
- * pantalla.h
- *
- *  Created on: 28/04/2013
- *      Author: Alfredo
+============================================================================
+ Name        : pantalla.h
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Definiciones de la interfaz usuario.
+ Version     :
+ ============================================================================
  */
-
 #ifndef PANTALLA_H_
 #define PANTALLA_H_
 
@@ -23,6 +26,8 @@ void opcionMultiplicacion();
 void opcionDivision();
 void opcionPotencia();
 void opcionRadicacion();
+void opcionRaicesPrimitivas();
+void opcionSumaFasores();
 void opcionTransferencia();
 tComplejo capturaComplejo();
 tComplejo capturaFormaBinomica();

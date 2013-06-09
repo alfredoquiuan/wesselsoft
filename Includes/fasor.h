@@ -1,10 +1,13 @@
 /*
- * fasor.h
- *
- *  Created on: 28/04/2013
- *      Author: Alfredo
+============================================================================
+ Name        : fasor.c
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Definiciones de las operaciones con fasores.
+ Version     :
+ ============================================================================
  */
-
 #ifndef FASOR_H_
 #define FASOR_H_
 

@@ -3,7 +3,7 @@
  Name        : wesselsoft.c
  Author      : Javier de Innocenti
                Alfredo Quiuan
-               Esteban ...
+               Esteban Taylor
  Description : Programa principal del sistema Wesselsoft.
  Version     :
  ============================================================================

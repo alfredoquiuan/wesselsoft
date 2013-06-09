@@ -1,10 +1,13 @@
 /*
- * transferencia.c
- *
- *  Created on: 07/06/2013
- *      Author: javier
+============================================================================
+ Name        : transferencia.c
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Funciones que realizan calculo de la funcion transferencia.
+ Version     :
+ ============================================================================
  */
-
 #include "transferencia.h"
 
 tComplejo transferencia(t_list *ceros, t_list *polos, double k, tComplejo punto)

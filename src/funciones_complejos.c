@@ -1,8 +1,12 @@
 /*
- * funciones_complejos.c
- *
- *  Created on: 28/04/2013
- *      Author: javier
+============================================================================
+ Name        : funciones_complejos.c
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Funciones que realizan operaciones con complejos.
+ Version     :
+ ============================================================================
  */
 #include "complejo.h"
 #include <math.h>

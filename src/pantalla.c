@@ -1,8 +1,12 @@
 /*
- * pantalla.c
- *
- *  Created on: Jun 2, 2013
- *      Author: alfredo
+============================================================================
+ Name        : pantalla.c
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Funciones de la interfaz de usuario.
+ Version     :
+ ============================================================================
  */
 
 #include "pantalla.h"
@@ -34,27 +38,31 @@ void pantalla()
 				opcionRadicacion();
 				break;
 			case 7:
-				opcionSumaFasores();
+				opcionRaicesPrimitivas();
 				break;
 			case 8:
+				opcionSumaFasores();
+				break;
+			case 9:
 				opcionTransferencia();
 				break;
 		}
-	} while (opcion != 9);
+	} while (opcion != 10);
 }
 
 void printMenu(){
 	printf("WesselSoft:\n\n");
 	printf("Ingrese una Opcion:\n");
-	printf("1-Suma de Complejos\n");
-	printf("2-Resta de Complejos\n");
-	printf("3-Multiplicacion de Complejos\n");
-	printf("4-Division de Complejos\n");
-	printf("5-Potencia de Complejos\n");
-	printf("6-Radicacion de Complejos\n");
-	printf("7-Suma de Fasores\n");
-	printf("8-Funcion de Transferencia\n");
-	printf("9-Salir\n\n");
+	printf(" 1-Suma de Complejos\n");
+	printf(" 2-Resta de Complejos\n");
+	printf(" 3-Multiplicacion de Complejos\n");
+	printf(" 4-Division de Complejos\n");
+	printf(" 5-Potencia de Complejos\n");
+	printf(" 6-Radicacion de Complejos\n");
+	printf(" 7-Raices primitivas\n");
+	printf(" 8-Suma de Fasores\n");
+	printf(" 9-Funcion de Transferencia\n");
+	printf("10-Salir\n\n");
 }
 
 void opcionSuma()
@@ -111,6 +119,15 @@ void opcionRadicacion()
 	printResultadoListaComplejos(resultado);
 }
 
+void opcionRaicesPrimitivas()
+{
+	//system("clear");
+	tComplejo z = capturaComplejo();
+	int n = capturaEntero();
+	t_list *resultado = raicesPrimitivas(&z,n);
+	printResultadoListaComplejos(resultado);
+}
+
 void opcionSumaFasores()
 {
 	tFasor *resultado;
@@ -122,7 +139,7 @@ void opcionSumaFasores()
 		resultado = sumaFasores(fasor1,fasor2);
 		printResultadoFasor(resultado);
 	} else {
-		printf("Debe ingresar fasores con ingual frecuencia\n");
+		printf("Debe ingresar fasores con igual frecuencia\n");
 	}
 }
 
@@ -251,7 +268,7 @@ tFasor capturaFasor()
 int capturaFasorFuncion()
 {
 	int funcion;
-	printf("Eliga la funcion:\n");
+	printf("Elija la funcion:\n");
 	printf("1-Coseno:\n");
 	printf("2-Seno:\n");
 	scanf("%d",&funcion);
@@ -267,14 +284,14 @@ double capturaFasorAmplitud()
 double capturaFasorFrecuencia()
 {
 	double frecuencia;
-	printf("Eliga la Frecuencia:\n");
+	printf("Elija la Frecuencia:\n");
 	scanf("%lf",&frecuencia);
 	return frecuencia;
 }
 double capturaFasorFase()
 {
 	double fase;
-	printf("Eliga la Fase:\n");
+	printf("Elija la Fase:\n");
 	scanf("%lf",&fase);
 	return fase;
 }

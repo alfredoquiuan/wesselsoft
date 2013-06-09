@@ -1,8 +1,12 @@
 /*
- * fasor.c
- *
- *  Created on: Jun 2, 2013
- *      Author: alfredo
+============================================================================
+ Name        : fasor.c
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Funciones que realizan operaciones con fasores.
+ Version     :
+ ============================================================================
  */
 
 #include "fasor.h"
@@ -28,6 +32,11 @@ tFasor *pasarComplejoAFasor(tComplejo *z, tFasor *fasor)
 {
 	tFasor *f;
 	tComplejo *w = pasarAPolar(z);
+
+	if ((f=(tFasor *)calloc(1, sizeof(tFasor))) == NULL) {
+		return NULL;
+	}
+
 	f->iFuncion = fasor->iFuncion;
 	f->dAmplitud = w->stPolar.dModulo;
 	f->dFrecuencia = fasor->dFrecuencia;

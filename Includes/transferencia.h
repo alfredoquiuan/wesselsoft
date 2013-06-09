@@ -1,10 +1,13 @@
 /*
- * transferencia.h
- *
- *  Created on: 07/06/2013
- *      Author: javier
+============================================================================
+ Name        : trasnferencia.h
+ Author      : Javier de Innocenti
+               Alfredo Quiuan
+               Esteban Taylor
+ Description : Definiciones de la funcion trasnferencia.
+ Version     :
+ ============================================================================
  */
-
 #ifndef TRANSFERENCIA_H_
 #define TRANSFERENCIA_H_
 
