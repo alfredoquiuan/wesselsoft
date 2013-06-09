@@ -14,14 +14,14 @@
 
 typedef struct
 {
-	char *cFuncion;
+	int iFuncion;
 	double dFrecuencia;
 	double dFase;
 	double dAmplitud;
 } tFasor;
 
-tFasor sumaFasores(tFasor fasor1, tFasor fasor2);
-tComplejo pasarFasorAComplejo(tFasor fasor);
-tFasor pasarComplejoAFasor(tComplejo *z, tFasor fasor);
+tFasor *sumaFasores(tFasor fasor1, tFasor fasor2);
+tComplejo pasarFasorAComplejo(tFasor *fasor);
+tFasor *pasarComplejoAFasor(tComplejo *z, tFasor *fasor);
 
 #endif /* FASOR_H_ */

@@ -6,8 +6,6 @@
  */
 
 #include "pantalla.h"
-#include "transferencia.h"
-#include "string.h"
 
 void pantalla()
 {
@@ -28,6 +26,15 @@ void pantalla()
 				break;
 			case 4:
 				opcionDivision();
+				break;
+			case 5:
+				opcionPotencia();
+				break;
+			case 6:
+				opcionRadicacion();
+				break;
+			case 7:
+				opcionSumaFasores();
 				break;
 			case 8:
 				opcionTransferencia();
@@ -84,6 +91,39 @@ void opcionDivision()
 	tComplejo z2 = capturaComplejo();
 	tComplejo *resultado = dividir(&z1,&z2);
 	printResultadoComplejo(resultado);
+}
+
+void opcionPotencia()
+{
+	//system("clear");
+	tComplejo z = capturaComplejo();
+	int n = capturaEntero();
+	t_list *resultado = potenciar(&z,n);
+	tComplejo *complejo = (tComplejo *) resultado->head->data;
+	printResultadoComplejo(complejo);
+}
+void opcionRadicacion()
+{
+	//system("clear");
+	tComplejo z = capturaComplejo();
+	int n = capturaEntero();
+	t_list *resultado = radicacion(&z,n);
+	printResultadoListaComplejos(resultado);
+}
+
+void opcionSumaFasores()
+{
+	tFasor *resultado;
+	tFasor fasor1 = capturaFasor();
+	tFasor fasor2 = capturaFasor();
+	if (fasor1.dFrecuencia == fasor2.dFrecuencia)
+	{
+		fasor2 = validarFasor(fasor2,fasor1.iFuncion);
+		resultado = sumaFasores(fasor1,fasor2);
+		printResultadoFasor(resultado);
+	} else {
+		printf("Debe ingresar fasores con ingual frecuencia\n");
+	}
 }
 
 void opcionTransferencia()
@@ -192,7 +232,52 @@ tComplejo capturaFormaPolar()
 
 	return z;
 }
-
+int capturaEntero()
+{
+	int a;
+	printf("Ingrese un numero entero:\n");
+	scanf("%d",&a);
+	return a;
+}
+tFasor capturaFasor()
+{
+	tFasor fasor;
+	fasor.iFuncion = capturaFasorFuncion();
+	fasor.dAmplitud = capturaFasorAmplitud();
+	fasor.dFrecuencia = capturaFasorFrecuencia();
+	fasor.dFase = capturaFasorFase();
+	return fasor;
+}
+int capturaFasorFuncion()
+{
+	int funcion;
+	printf("Eliga la funcion:\n");
+	printf("1-Coseno:\n");
+	printf("2-Seno:\n");
+	scanf("%d",&funcion);
+	return funcion;
+}
+double capturaFasorAmplitud()
+{
+	double amplitud;
+	printf("Ingresa la Amplitud:\n");
+	scanf("%lf",&amplitud);
+	return amplitud;
+}
+double capturaFasorFrecuencia()
+{
+	double frecuencia;
+	printf("Eliga la Frecuencia:\n");
+	scanf("%lf",&frecuencia);
+	return frecuencia;
+}
+double capturaFasorFase()
+{
+	double fase;
+	printf("Eliga la Fase:\n");
+	scanf("%lf",&fase);
+	return fase;
+}
 void printResultadoComplejo(tComplejo *z)
 {
 	printf("El resultado es:\n");
@@ -216,4 +301,43 @@ void printResultadoPolar(tComplejo *z)
 void printResultadoBinomica(tComplejo *z)
 {
 	printf("En forma binomica: (%.2lf,%.2lf)\n",z->stBinomica.dReal,z->stBinomica.dImaginaria);
+}
+void printResultadoListaComplejos(t_list *resultado)
+{
+	list_iterate(resultado, imprimirRaices);
+	list_destroy(resultado);
+}
+void printResultadoFasor(tFasor *resultado)
+{
+	char *funcion;
+	if (resultado->iFuncion == 1)
+	{
+		funcion = "cos";
+	} else {
+		funcion = "sen";
+	}
+	printf("(f+g)(t) = %.2lf %s(%.2lft + %.2lf)\n\n",resultado->dAmplitud, funcion, resultado->dFrecuencia, resultado->dFase);
+}
+void imprimirRaices(void *unComplejo)
+{
+	tComplejo *raiz;
+	raiz = (tComplejo *) unComplejo;
+	printf("[%.4f, %.4f]\n", raiz->stPolar.dModulo, raiz->stPolar.dArgumento);
+}
+tFasor validarFasor(tFasor fasor, int funcion)
+{
+	if (fasor.iFuncion == funcion) {
+		return fasor;
+	} else {
+		tFasor fasorEquivalente = fasor;
+		double defaseje = 3.1416 / 2;
+		if (funcion == 1) {
+			fasorEquivalente.dFase = fasor.dFase + defaseje;
+		} else {
+			fasorEquivalente.dFase = fasor.dFase - defaseje;
+		}
+		fasorEquivalente.iFuncion = funcion;
+		return fasorEquivalente;
+	}
+
 }
